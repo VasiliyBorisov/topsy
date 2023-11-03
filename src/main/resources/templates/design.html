@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Design</title>
+	</head>
+	<body>
+
+		<h1>PE</h1>
+		
+		<form method="post" th:object="${lesson}">
+			<div th:each="ex : ${exerciseList}">
+				<input th:field="*{exercises}" type="checkbox" th:value="${ex.id}">
+				<span th:text="${ex.name}">text</span>: 
+				<span th:text="${ex.diff}">text</span><br>
+			</div>
+			<div th:text="${string}">exercise name</div>
+			<div>
+				<span>Lesson name:</span>
+				<input type="text" th:field="*{name}">
+				<button>Submit</button>
+			</div>
+		</form>
+
+	</body>
+</html>

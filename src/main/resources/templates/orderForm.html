@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+	<body>
+		<div th:each="lesson : ${lessonOrder.lessons}">
+			Name: <span th:text="${lesson.name}">text</span>
+			<div th:each="ex : ${lesson.exercises}">
+				<span th:text="${ex.id}">text</span>
+			</div>
+			<hr>
+		</div>
+	</body>
+</html>
