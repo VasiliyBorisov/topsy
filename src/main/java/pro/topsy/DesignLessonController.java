@@ -2,7 +2,9 @@ package pro.topsy;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,21 +22,26 @@ import pro.topsy.Exercise.Difficult;
 @SessionAttributes("lessonOrder")
 public class DesignLessonController {
 	
+	private final ExerciseRepository exRepo;
+//	@Autowired
+	public DesignLessonController (ExerciseRepository exRepo) {
+		this.exRepo = exRepo;
+	}
+	
 	@ModelAttribute
 	public void addExercisesToModel(Model model) {
-	
-		List<Exercise> exercises = Arrays.asList(
-				new Exercise("aaa", "aa aa aa", Difficult.HIGH),
-				new Exercise("bbb", "bb bb bb", Difficult.HIGH),
-				new Exercise("ccc", "cc cc cc", Difficult.LOW),
-				new Exercise("ddd", "dd dd dd", Difficult.MEDIUM),
-				new Exercise("eee", "ee ee ee", Difficult.MEDIUM),
-				new Exercise("fff", "ff ff ff", Difficult.HIGH)
-				);
-//		model.addAllAttributes(exercises);
-		String str = exercises.getClass().getSuperclass().toString();
-		model.addAttribute(str);
-		model.addAttribute(exercises);
+		List<Exercise> exercises = (List<Exercise>) exRepo.findAll();
+		Difficult[] difficults = Difficult.values();
+		
+		for (Difficult diff : difficults) {
+			model.addAttribute(diff.toString().toLowerCase(), filterByDiff(exercises, diff));
+		}
+	}
+
+	private Iterable<Exercise> filterByDiff (List<Exercise> exercises, Difficult diff) {
+		return exercises.stream()
+				.filter(x -> x.getDiff().equals(diff))
+				.collect(Collectors.toList());
 	}
 	
 	@ModelAttribute(name = "lessonOrder")
