@@ -5,7 +5,8 @@
 	</head>
 	<body>
 		<div th:each="lesson : ${lessonOrder.lessons}">
-			Name: <span th:text="${lesson.name}">text</span>
+			Name: <span th:text="${lesson.name}">text</span><br>
+			date: <span th:text="${lesson.createdAt}">text</span>
 			<div th:each="ex : ${lesson.exercises}">
 				<span th:text="${ex.id}">text</span>
 			</div>
