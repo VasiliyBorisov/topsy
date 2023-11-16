@@ -1,9 +1,5 @@
 package pro.topsy;
 
-import java.nio.charset.StandardCharsets;
-
-import com.google.common.hash.Hashing;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AccessLevel;
@@ -28,10 +24,6 @@ public class Exercise {
 		
 		public static Difficult getRandom() {
 			return values()[(int) (Math.random() * values().length)];
-		}
-		
-		public static String getSHA256() {
-			return Hashing.sha256().hashInt(123).toString();
 		}
 		
 	}

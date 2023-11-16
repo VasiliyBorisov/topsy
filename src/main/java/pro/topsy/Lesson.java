@@ -21,11 +21,12 @@ public class Lesson {
 	private Long id;
 
 	@NotNull
-	@Size(max = 5, message = "5 chars min")
+	@Size(min = 2, message = "5 chars min")
 	private String name;
-	
+	private String dName = "Default Name";
 	private Date createdAt = new Date();
 	
+	@NotNull
 	@Size(min = 1, message = "choose at least 1 exercise")
 	@ManyToMany
 	private List<Exercise> exercises = new ArrayList<>();

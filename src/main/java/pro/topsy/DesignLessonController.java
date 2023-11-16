@@ -7,12 +7,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import pro.topsy.Exercise.Difficult;
 
@@ -60,7 +62,10 @@ public class DesignLessonController {
 	}
 	
 	@PostMapping
-	public String processLesson(Lesson lesson, @ModelAttribute LessonOrder lessonOrder) {
+	public String processLesson(@Valid Lesson lesson, Errors errors, @ModelAttribute LessonOrder lessonOrder) {
+		if (errors.hasErrors()) {
+			return "design";
+		}
 		lessonOrder.addLesson(lesson);
 		log.info("Processing lesson: {}", lesson);
 		return "redirect:/orders/current";

@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home</title>
+		<title>Order</title>
+		<style>
+			td { border: 1px solid black; }
+		</style>
 	</head>
 	<body>
-		<div th:each="lesson : ${lessonOrder.lessons}">
-			Name: <span th:text="${lesson.name}">text</span><br>
-			date: <span th:text="${lesson.createdAt}">text</span>
-			<div th:each="ex : ${lesson.exercises}">
-				<span th:text="${ex.id}">text</span>
-			</div>
-			<hr>
-		</div>
+		<table>
+			<tr th:each="lesson : ${lessonOrder.lessons}">
+				<td>Name: <span th:text="${lesson.name}">text</span><br>Date: <span th:text="${lesson.createdAt}">text</span>
+				</td>
+				<td>
+					<span th:each="ex : ${lesson.exercises}">
+						<span th:text="${ex.id}">text</span>
+					</span>
+				</td>
+			</tr>
+		</table>
+		<form method="post" th:action="@{/orders}" th:object="${lessonOrder}">
+			<li>
+			<li>Name: <input type="text" th:field="*{name}"></li>
+			<li th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</li>
+			<li>Number: <input type="text" th:field="*{number}"></li>
+			<li th:if="${#fields.hasErrors('number')}" th:errors="*{number}">error</li>
+			<li><button>Process</button></li>
+<!--			<li><input type="submit" name="Sbm"></li>
+-->			<li><a th:href="@{/design}">Add one more</a></li>
+			</ul>
+		</form>
 	</body>
 </html>
