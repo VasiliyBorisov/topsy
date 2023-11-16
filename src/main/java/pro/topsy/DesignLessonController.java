@@ -1,10 +1,9 @@
 package pro.topsy;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -53,7 +52,9 @@ public class DesignLessonController {
 	
 	@ModelAttribute(name = "lesson")
 	public Lesson lesson() {
-		return new Lesson();
+		Lesson l = new Lesson();
+		log.info("new Lesson: {}", l);
+		return l;
 	}
 	
 	@GetMapping
@@ -68,6 +69,7 @@ public class DesignLessonController {
 		}
 		lessonOrder.addLesson(lesson);
 		log.info("Processing lesson: {}", lesson);
+		log.info("lessonOrder: {}", lessonOrder);
 		return "redirect:/orders/current";
 	}
 }

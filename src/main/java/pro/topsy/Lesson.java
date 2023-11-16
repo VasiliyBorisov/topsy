@@ -23,7 +23,7 @@ public class Lesson {
 	@NotNull
 	@Size(min = 2, message = "5 chars min")
 	private String name;
-	private String dName = "Default Name";
+
 	private Date createdAt = new Date();
 	
 	@NotNull

@@ -18,8 +18,8 @@
 				</td>
 			</tr>
 		</table>
-		<form method="post" th:action="@{/orders}" th:object="${lessonOrder}">
-			<li>
+		<form method="post" th:action="@{/orders}">
+			<ul th:object="${lessonOrder}">
 			<li>Name: <input type="text" th:field="*{name}"></li>
 			<li th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</li>
 			<li>Number: <input type="text" th:field="*{number}"></li>
