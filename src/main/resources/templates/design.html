@@ -89,7 +89,7 @@
 			<div>
 				<!--<label for="name">Lesson name:</label>-->
 				<span>Lesson name:</span>
-				<input type="text" th:field="*{name}">
+				<input type="text" th:field="${lesson.name}">
 				<span style="color: red;" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</span>
 				<button>Submit</button>
 			</div>

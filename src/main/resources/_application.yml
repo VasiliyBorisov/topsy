@@ -1,0 +1,16 @@
+spring:
+# main:
+#  banner-mode: off
+ datasource:
+#  generate-unique-name: false
+#  name: topsy
+  url: jdbc:postgresql://localhost:5432/pgs
+  username: vas
+  password: 2907
+  driver-class-name: org.postgresql.Driver
+ jpa:
+  database: postgresql
+  database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  show-sql: true
+  hibernate:
+    ddl-auto: none

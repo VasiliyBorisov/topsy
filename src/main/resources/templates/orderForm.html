@@ -20,8 +20,8 @@
 		</table>
 		<form method="post" th:action="@{/orders}">
 			<ul th:object="${lessonOrder}">
-			<li>Name: <input type="text" th:field="*{name}"></li>
-			<li th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</li>
+			<li>Name: <input type="text" th:field="*{consName}"></li>
+			<li th:if="${#fields.hasErrors('consName')}" th:errors="*{consName}">error</li>
 			<li>Number: <input type="text" th:field="*{number}"></li>
 			<li th:if="${#fields.hasErrors('number')}" th:errors="*{number}">error</li>
 			<li><button>Process</button></li>

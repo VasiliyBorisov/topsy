@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +30,7 @@ public class LessonOrder implements Serializable {
 	private Date placedAt = new Date();
 	
 	@NotBlank(message = "Name is required")
-	private String name;
+	private String consName;
 
 	@Pattern(regexp = "\\+[0-9]+\\([0-9]+\\)[0-9]+", message = "\\+[0-9]+\\([0-9]+\\)[0-9]+")
 	private String number;
